@@ -10,6 +10,11 @@ resource "aws_lambda_function" "my_lambda" {
   runtime       = "python3.8"
   timeout       = 3
   memory_size   = 128
+  environment {
+    variables = {
+      LAYER_ARN = aws_lambda_layer_version.example_layer.arn
+    }
+  }
 }
 
 resource "aws_iam_role" "my_lambda" {
@@ -66,5 +71,11 @@ resource "aws_api_gateway_integration" "example_integration" {
 resource "aws_api_gateway_deployment" "example_deployment" {
   rest_api_id = aws_api_gateway_rest_api.example_api.id
   stage_name  = "prod"
+}
+
+resource "aws_lambda_layer_version" "example_layer" {
+  layer_name = "example_layer"
+  compatible_runtimes = ["python3.9"]
+  filename = "dependencies.zip"
 }
 
