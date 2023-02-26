@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_lambda_function" "my_lambda" {
   filename      = "lambda_function.zip"
-  function_name = "my_lambda"
+  function_name = "my_lambda1"
   role          = aws_iam_role.my_lambda.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.8"
