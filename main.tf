@@ -14,5 +14,5 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "lucas_test_gato_bucket" {
-  bucket = "s3_lucas_bucket"
+  bucket = "lucas-s3-test-bucket"
 }
